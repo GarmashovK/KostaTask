@@ -47,13 +47,24 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="WCFTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeHost\EmployeHost.csproj">
+      <Project>{91a1b46a-edc2-43a9-896f-48430825eb50}</Project>
+      <Name>EmployeHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmployeServiceLib\EmployeServiceLib.csproj">
+      <Project>{324f97fd-74da-4f85-84d5-8affbbc5f1cd}</Project>
+      <Name>EmployeServiceLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

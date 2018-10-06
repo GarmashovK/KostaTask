@@ -1,6 +1,7 @@
 ﻿using EmployeServiceLib;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -8,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace EmployeHost {
     class Program {
+        //static void SetDataDir() {
+        //    var absolute = Path.GetDirectoryName(@"Data\EmployeDB.mdf");
+        //    AppDomain.CurrentDomain.SetData("DataDirectory", @absolute);
+        //}
+
         static void Main(string[] args) {
             Console.Title = "Employees Server";
+            //SetDataDir();
 
             var address = new Uri("http://localhost:4400/EmployeService.svc");
             var binding = new BasicHttpBinding();
