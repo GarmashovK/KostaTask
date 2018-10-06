@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KostaWebTask.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,9 @@ using System.Web.Routing;
 namespace KostaWebTask {
     public class MvcApplication : System.Web.HttpApplication {
         protected void Application_Start() {
+            //mapping
+            AutoMapperBootstrapper.Bootstrap();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

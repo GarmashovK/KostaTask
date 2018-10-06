@@ -1,4 +1,5 @@
-﻿using KostaWebTask.Models;
+﻿using EmployeServiceLib.Models;
+using KostaWebTask.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,22 @@ namespace KostaWebTask.Controllers
 
         [HttpPost]
         public ActionResult Add(AddEmployeViewModel model) {
-            
+            var service = EmlopyeClientService.GetChannel();
+
+            try {
+                service.SetEmploye(new Employe() {
+                    FirstName = model.FirstName,
+                });
+            }catch(Exception e){
+
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult GetAll() {
+        public ActionResult Find(FindEmployeViewModel model) {
 
+            return null;
         }
     }
 }
