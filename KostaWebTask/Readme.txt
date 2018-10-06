@@ -1,0 +1,1 @@
+﻿To work with application you need to start console wcf application EmployeHost.
