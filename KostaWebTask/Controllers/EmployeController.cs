@@ -1,4 +1,5 @@
-﻿using EmployeServiceLib.Models;
+﻿using AutoMapper;
+using EmployeServiceLib.Models;
 using KostaWebTask.Models;
 using System;
 using System.Collections.Generic;
@@ -22,22 +23,40 @@ namespace KostaWebTask.Controllers
 
         [HttpPost]
         public ActionResult Add(AddEmployeViewModel model) {
-            var service = EmlopyeClientService.GetChannel();
+            if (ModelState.IsValid) {
+                var service = EmployeClientService.GetChannel();
 
-            try {
-                service.SetEmploye(new Employe() {
-                    FirstName = model.FirstName,
-                });
-            }catch(Exception e){
-
+                try {
+                    service.SetEmploye(Mapper.Map<Employe>(model));
+                } catch (Exception e) {
+                    ModelState.AddModelError("", e.Message);
+                    return View();
+                }
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Find(FindEmployeViewModel model) {
+        public ActionResult Find(
+            FindEmployeViewModel model,
+            IEnumerable<Employe> match) {
+            if (match == null) {
+                ViewBag.Employees = match;
+            }
+            if (model != null) {
+                return View(model);
+            } else {
+                return View();
+            }
+        }
 
-            return null;
+        [HttpPost]
+        public ActionResult Find(FindEmployeViewModel model) {
+            var service = EmployeClientService.GetChannel();
+
+            var employees = service.GetEmployees(model.FirstName, model.LastName, model.Patronymic);
+
+            return View("Find", new { model = model, match = employees });
         }
     }
 }

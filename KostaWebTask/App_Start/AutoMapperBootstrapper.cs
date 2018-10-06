@@ -13,6 +13,7 @@ namespace KostaWebTask.App_Start {
                 cfg.CreateMap<Employe, GetEmployeViewModel>()
                 .ForMember(vm => vm.Age,
                     m => m.MapFrom(e => (DateTime.Now - e.BirthDay).Days / 365));
+                cfg.CreateMap<AddEmployeViewModel, Employe>();
             });
         }
     }

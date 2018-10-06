@@ -3,7 +3,7 @@ using System;
 using System.ServiceModel;
 
 namespace KostaWebTask {
-    public static class EmlopyeClientService {
+    public static class EmployeClientService {
         private static IEmployeService channel;
 
         public static IEmployeService GetChannel() {
