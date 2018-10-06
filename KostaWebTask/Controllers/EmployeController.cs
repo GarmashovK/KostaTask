@@ -40,8 +40,8 @@ namespace KostaWebTask.Controllers
         public ActionResult Find(
             FindEmployeViewModel model,
             IEnumerable<Employe> match) {
-            if (match == null) {
-                ViewBag.Employees = match;
+            if (match != null) {
+                ViewBag.Employees = Mapper.Map<IEnumerable<Employe>, IEnumerable<GetEmployeViewModel>>(match);
             }
             if (model != null) {
                 return View(model);
@@ -56,7 +56,7 @@ namespace KostaWebTask.Controllers
 
             var employees = service.GetEmployees(model.FirstName, model.LastName, model.Patronymic);
 
-            return View("Find", new { model = model, match = employees });
+            return Find(model,employees);
         }
     }
 }
